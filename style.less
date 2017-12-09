@@ -1,0 +1,36 @@
+body{
+    width:100vw;
+    height:100vh;
+
+    .calculatorBody{
+        width:60%;
+        height:60%;
+        background-color: grey;
+        border:1px solid black;
+
+        .face{
+            height:18%;
+            background-color:lightgrey;
+            width:98%;
+        }
+
+        .buttonRow{
+            height:18%;
+            width:98%;
+            display:flex;
+
+            .button{
+                border:1px solid green;
+                height:100%;
+                width:100%;
+                display:flex;
+                flex-direction:row;
+                justify-content: space-around;
+                align-items: center;
+                &:hover{
+                    background-color: skyblue;
+                }
+            }
+        }
+    }
+}

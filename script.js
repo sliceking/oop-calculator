@@ -10,10 +10,10 @@ $(document).ready(function() {
 function BodyCreator() {
   var self = this;
   this.buttonMap = [
-      ['+','-','*','/'],
-      ['1','2','3','4'],
-      ['5','6','7','8'],
-      ['9','0','C','=']
+      ['1','2','3','*'],
+      ['4','5','6','/'],
+      ['7','8','9','-'],
+      ['0','C','=','+']
   ]
   this.body = $(".calculatorBody");
   this.face;
@@ -24,6 +24,7 @@ function BodyCreator() {
     this.registerFace();
     this.addButtonRows(self.buttonMap.length);
     this.registerButtonRows();
+    this.addButtons(self.buttonMap);
   };
 
   this.addFace = function() {
@@ -37,11 +38,12 @@ function BodyCreator() {
   };
 
   this.addButtonRows = function(numRows) {
-    while (numRows > 0) {
+    var numIndex = 0;
+    while(numIndex < numRows) {
       $("<div></div>", {
-        class: "buttonRow"
+        class: "buttonRow row" + (numIndex + 1)
       }).appendTo(self.body);
-      numRows--;
+      numIndex++;
     }
   };
 
@@ -49,7 +51,19 @@ function BodyCreator() {
     self.buttonRows = $(".buttonRow");
   };
 
-  this.addCalculatorButtons = function() {
-
+  this.addButtons = function(buttonMap) {
+    var mapIndex = buttonMap.length;
+    while(mapIndex > 0){
+      var currentRow = $('.row' + mapIndex);
+      var buttonIndex = 0;
+      while(buttonIndex < 4){
+        $('<div></div>',{
+          'class':'button',
+          text:buttonMap[mapIndex - 1][buttonIndex]
+        }).appendTo(currentRow);
+        buttonIndex++;
+      }
+      mapIndex--;
+    }
   };
 }
