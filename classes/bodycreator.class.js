@@ -28,12 +28,15 @@ function calcBody() {
   
     //MAKE SURE TO UPDATE THIS -- face updates itself
     this.addFace = function() {
+      /* new face passes a ref to the calc and 
+      returns a ref to the face body and face obj*/
       const face = new Face(self);
       $(face.body).appendTo(self.body);
       self.registerFace(face.faceRef);
     };
   
     this.registerFace = function(face) {
+
       self.face = face;
     };
   
