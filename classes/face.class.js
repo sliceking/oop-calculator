@@ -13,7 +13,9 @@ function Face(calcRef) {
       class:'face'
   })
 
+  this.update = function(keyPress){
+    $(self.body).text(keyPress)
+  }
 
-  //UPDATE THIS SO THE FACE CAN UPDATE ITSELF INSTEAD OF THE CALC BODY
-  return this.body;
+  return {body: this.body, faceRef: self};
 }

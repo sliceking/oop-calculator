@@ -1,5 +1,6 @@
 /*************************
- * Calculator body object
+ * Calculator body object -
+ *  all updates pass through the body
  *  @constructor
  *
  * */
@@ -19,7 +20,6 @@ function BodyCreator() {
     //init function for calculator DOM creation
     this.init = function() {
       this.addFace();
-      this.registerFace();
       //creates the number of rows depending on the button map length
       this.addButtonRows(self.buttonMap.length);
       this.registerButtonRows();
@@ -28,11 +28,13 @@ function BodyCreator() {
   
     //MAKE SURE TO UPDATE THIS -- face updates itself
     this.addFace = function() {
-      $(new Face(self)).appendTo(self.body);
+      const face = new Face(self);
+      $(face.body).appendTo(self.body);
+      self.registerFace(face.faceRef);
     };
   
-    this.registerFace = function() {
-      self.face = $(".face");
+    this.registerFace = function(face) {
+      self.face = face;
     };
   
     this.addButtonRows = function(numRows) {
@@ -69,6 +71,6 @@ function BodyCreator() {
     };
   
     this.updateFace = function(keyPress){
-      $(self.face).text(keyPress);
+      self.face.update(keyPress)
     }
   }
