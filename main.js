@@ -1,4 +1,4 @@
 $(document).ready(function() {
-  const calc = new BodyCreator();
+  const calc = new calcBody();
   calc.init();
 });

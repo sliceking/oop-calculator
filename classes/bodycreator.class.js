@@ -4,7 +4,7 @@
  *  @constructor
  *
  * */
-function BodyCreator() {
+function calcBody() {
     const self = this;
     //feel free to change the layout as you wish
     this.buttonMap = [
