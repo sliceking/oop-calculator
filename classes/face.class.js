@@ -7,7 +7,7 @@
  */
 
 function Face(calcRef) {
-  var self = this;
+  const self = this;
   this.calcRef = calcRef;
   this.body = $('<div></div>',{
       class:'face'

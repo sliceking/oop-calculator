@@ -4,5 +4,6 @@
  * 
  */
 function Calculator(){
+    const self = this;
     
 }
