@@ -1,7 +1,6 @@
 /************
  * Calculator face object
  * @constructor
- * @param {jQuery element reference} calcFace - DOM reference to the calculator face
  * @param {object} calcRef - reference to the calculator object
  *
  */

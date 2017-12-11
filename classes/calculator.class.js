@@ -1,6 +1,7 @@
 /***************************
  * Calculation executor
  * @constructor
+ * @param {jQuery element reference} faceRef - reference to the calculator face object
  * 
  */
 function Calculator(faceRef){

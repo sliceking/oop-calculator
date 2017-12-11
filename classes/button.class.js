@@ -2,6 +2,7 @@
  * Button object
  * @constructor
  * @param {string} buttonFace - a singular calc button key
+ * @param {jQuery element reference} calcRef - reference to the calculator body object
  *
  **/
 
