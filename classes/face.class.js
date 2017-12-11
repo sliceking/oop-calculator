@@ -14,6 +14,7 @@ function Face(calcRef) {
   this.body = $('<div></div>',{
       class:'face'
   })
+  this.calculator = new Calculator(self);
 
   this.update = function(keyPress){
     self.operationsStack.push(keyPress)

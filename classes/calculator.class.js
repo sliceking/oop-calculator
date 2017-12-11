@@ -3,7 +3,9 @@
  * @constructor
  * 
  */
-function Calculator(){
+function Calculator(faceRef){
     const self = this;
+    this.faceRef = faceRef;
+
     
 }
