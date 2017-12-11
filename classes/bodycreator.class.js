@@ -16,17 +16,27 @@ function calcBody() {
     this.body = $(".calculatorBody");
     this.face;
     this.buttonRows;
+    this.calculator;
   
     //init function for calculator DOM creation
     this.init = function() {
       this.addFace();
+      this.addCalculator();
       //creates the number of rows depending on the button map length
       this.addButtonRows(self.buttonMap.length);
       this.registerButtonRows();
       this.addButtons(self.buttonMap);
     };
+
+
+    //ugh, you did this wrong..... you need to create the calculator 
+    //first and the face afterwards, the calculator should tell the 
+    //face what to update to - not the other way around
+    this.addCalculator = function(){
+      self.calculator = new Calculator(self.face);
+    }
   
-    //MAKE SURE TO UPDATE THIS -- face updates itself
+
     this.addFace = function() {
       /* new face passes a ref to the calc and 
       returns a ref to the face body and face obj*/

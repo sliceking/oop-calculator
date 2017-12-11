@@ -14,8 +14,10 @@ function Face(calcRef) {
   this.body = $('<div></div>',{
       class:'face'
   })
-  this.calculator = new Calculator(self);
 
+//this needs to be updated, have data passed from 
+//the button to the body to the calc to the face
+//currently in the wrong order
   this.update = function(keyPress){
     self.operationsStack.push(keyPress)
     $(self.body).text(self.operationsStack.join(''))
