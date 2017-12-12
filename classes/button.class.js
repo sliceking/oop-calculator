@@ -15,7 +15,7 @@ function Button(buttonFace, calcRef) {
     text: self.face,
     click: function() {
       //needs a calculaton object to pass information to
-      self.calcRef.updateFace(self.face);
+      self.calcRef.update(self.face);
     }
   });
   //on creation button returns a reference to its DOM element
