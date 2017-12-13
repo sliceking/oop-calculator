@@ -11,12 +11,25 @@ function Calculator(calcRef){
 
     //update the operationstack first then tell the face to update the display
     this.update = function(newPress){
-        self.operationStack.push(newPress);
-        self.updateFace(self.operationStack);
+        self.updateStack(newPress);
     }
 
-    this.updateFace = function(newStack){
-        self.calcRef.face.update(newStack.join(''));
+
+    this.updateStack = function(newPress){
+        self.operationStack.push(newPress);
+        self.checkIfEquals();
+    }
+
+    this.checkIfEquals = function(){
+        self.operationStack[self.operationStack.length-1] == "=" ? self.doMath() : self.updateFace();
+    }
+
+    this.doMath = function(){
+        console.log('im doing math');
+    }
+
+    this.updateFace = function(){
+        self.calcRef.face.update(self.operationStack.join(''));
     }
 
     
