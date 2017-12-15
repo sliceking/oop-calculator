@@ -20,13 +20,29 @@ function Calculator(calcRef){
     }
 
     this.checkIfEquals = function(){
-        self.operationStack[self.operationStack.length-1] == "=" ? self.parseInt() : self.updateFace();
+        self.operationStack[self.operationStack.length-1] == "=" ? self.removeEquals() : self.updateFace();
+    }
+
+    this.removeEquals = () => {
+        self.operationStack.pop();
+        self.parseInt();
     }
 
     this.parseInt = function(){
         //if the index is a number parseInt and return, if isNaN return the string
-        var test = self.operationStack.map( x => isNaN( parseInt(x) ) ?  x :  parseInt(x) );
-        console.log(test); 
+        self.operationStack = self.operationStack.map( x => isNaN( parseInt(x) ) ?  x :  parseInt(x) );
+        console.log(self.operationStack); 
+        self.findOperators();
+    }
+
+    this.findOperators = () => {
+        var operationIndex = [];
+        for(var i = 0; i < self.operationStack.length; i++){
+            if(typeof self.operationStack[i] === 'string'){  
+                operationIndex.push(i);
+            }
+        }
+        console.log(operationIndex);
     }
 
     this.doMath = function(){
