@@ -43,15 +43,44 @@ function Calculator(calcRef){
             }
         }
         console.log(operationIndex);
+        self.doMath(operationIndex);
     }
 
-    this.doMath = function(){
-        console.log('im doing math');
+    this.doMath = function(operatorIndex){
+        var num1 = parseInt(self.operationStack.slice(0,operatorIndex[0]).join(''));
+        var num2 = parseInt(self.operationStack.slice(operatorIndex[0]+1,operatorIndex[1]).join(''));
+        var operator = operatorIndex[0];
+        if (operator === '+'){
+            self.add(num1,num2);
+        } else if(operator === '-'){
+            self.subtract(num1,num2);
+        }else if(operator === '/'){
+            self.divide(num1,num2);
+        }else if(operator === '*'){
+            self.multiply(num1,num2);
+        }
+        console.log('num1: '+ num1 );
+        console.log('num2: '+ num2 );
     }
 
     this.updateFace = function(){
         self.calcRef.face.update(self.operationStack.join(''));
     }
 
+    this.add = function(num1, num2){
+        return num1 + num2;
+    }
+
+    this.subtract = function(num1, num2){
+        return num1 - num2;
+    }
+
+    this.divide = function(num1, num2){
+        return num1 / num2;
+    }
+
+    this.multiply = function(num1, num2){
+        return num1 * num2;
+    }
     
 }
