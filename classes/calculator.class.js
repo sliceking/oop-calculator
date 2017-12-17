@@ -43,12 +43,14 @@ function Calculator(calcRef){
             }
         }
         console.log(operationIndex);
-        self.doMath(operationIndex);
+        self.doMath(operationIndex, self.operationStack);
     }
 
-    this.doMath = function(operatorIndex){
-        var num1 = parseInt(self.operationStack.slice(0,operatorIndex[0]).join(''));
-        var num2 = parseInt(self.operationStack.slice(operatorIndex[0]+1,operatorIndex[1]).join(''));
+    this.doMath = function(operatorIndex, operationsStack){
+        //turn this into a recursive math function
+        if (!operationStack[1]){ return operationStack }
+        var num1 = parseInt(operationsStack.slice(0,operatorIndex[0]).join(''));
+        var num2 = parseInt(operationsStack.slice(operatorIndex[0]+1,operatorIndex[1]).join(''));
         var operator = operatorIndex[0];
         if (operator === '+'){
             self.add(num1,num2);
