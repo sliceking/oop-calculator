@@ -20,69 +20,59 @@ function Calculator(calcRef){
     }
 
     this.checkIfEquals = function(){
-        self.operationStack[self.operationStack.length-1] == "=" ? self.removeEquals() : self.updateFace();
+        self.operationStack[self.operationStack.length-1] == "=" ? self.doMath() : self.updateFace();
     }
 
-    this.removeEquals = () => {
+    this.doMath = () => {
         self.operationStack.pop();
-        self.parseInt();
+        self.recurseMath(self.operationStack);
     }
 
-    this.parseInt = function(){
-        //if the index is a number parseInt and return, if isNaN return the string
-        self.operationStack = self.operationStack.map( x => isNaN( parseInt(x) ) ?  x :  parseInt(x) );
-        console.log(self.operationStack); 
-        self.findOperators();
-    }
+    this.recurseMath = function(operationStack){
+        //turn this into a recursive math function
+        console.log('operation Stack: ' + operationStack);
+        if (!operationStack[1]){ return operationStack }
+        var num1;
+        var num2;
+        var operator;
 
-    this.findOperators = () => {
-        var operationIndex = [];
-        for(var i = 0; i < self.operationStack.length; i++){
-            if(typeof self.operationStack[i] === 'string'){  
-                operationIndex.push(i);
+        for(var i = 0; i < operationStack.length; i++){
+            if (operationStack[i] === '+' || operationStack[i] === '-' || operationStack[i] === '*' || operationStack[i] === '/'){
+                num1 = operationStack.slice(0, i);
+                operator = operationStack[i];
+                num2 = operationStack.slice(i + 1);
+                break;
             }
         }
-        console.log(operationIndex);
-        self.doMath(operationIndex, self.operationStack);
+
+        console.log('num1: ' + num1);
+        console.log('num2: ' + num2);
+        console.log('operator: ' + operator);
+
+
+
+
+        self.updateFace();
     }
 
-    this.doMath = function(operatorIndex, operationsStack){
-        //turn this into a recursive math function
-        if (!operationStack[1]){ return operationStack }
-        var num1 = parseInt(operationsStack.slice(0,operatorIndex[0]).join(''));
-        var num2 = parseInt(operationsStack.slice(operatorIndex[0]+1,operatorIndex[1]).join(''));
-        var operator = operatorIndex[0];
+    // calculate function
+    this.calculate = function(num1, num2, operator){
+        var result;
         if (operator === '+'){
-            self.add(num1,num2);
+                result = num1 + num2;
         } else if(operator === '-'){
-            self.subtract(num1,num2);
+            result = num1 - num2;
         }else if(operator === '/'){
-            self.divide(num1,num2);
+            result = num1 / num2;
         }else if(operator === '*'){
-            self.multiply(num1,num2);
+            result = num1 * num2;
         }
-        console.log('num1: '+ num1 );
-        console.log('num2: '+ num2 );
+        return result;
     }
 
     this.updateFace = function(){
         self.calcRef.face.update(self.operationStack.join(''));
     }
 
-    this.add = function(num1, num2){
-        return num1 + num2;
-    }
-
-    this.subtract = function(num1, num2){
-        return num1 - num2;
-    }
-
-    this.divide = function(num1, num2){
-        return num1 / num2;
-    }
-
-    this.multiply = function(num1, num2){
-        return num1 * num2;
-    }
     
 }
